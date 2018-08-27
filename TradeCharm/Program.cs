@@ -12,6 +12,7 @@ namespace TradeCharm
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcom");
             ExecuteSecondImplementation();
         }
 
