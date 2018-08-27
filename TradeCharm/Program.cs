@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using YahooFinance;
 
 namespace TradeCharm
 {
@@ -12,7 +13,9 @@ namespace TradeCharm
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcom");
+            Console.WriteLine("Welcome");
+            Sample sample = new Sample();
+            sample.GetTick();
             ExecuteSecondImplementation();
         }
 

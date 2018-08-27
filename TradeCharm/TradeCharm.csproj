@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TradeCharm</RootNamespace>
     <AssemblyName>TradeCharm</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,6 +57,10 @@
     <ProjectReference Include="..\TradeSimulator\TradeSimulator.csproj">
       <Project>{229579a7-ad00-4197-a188-e95bd74594fe}</Project>
       <Name>TradeSimulator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YahooFinance\YahooFinance.csproj">
+      <Project>{2d3675b6-f2bf-412c-abfb-eb22126b5fd8}</Project>
+      <Name>YahooFinance</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
