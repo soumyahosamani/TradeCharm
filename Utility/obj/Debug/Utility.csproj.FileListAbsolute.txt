@@ -1,0 +1,5 @@
+E:\Soumya\Me\Projects\TradeCharm\Utility\bin\Debug\Utility.dll
+E:\Soumya\Me\Projects\TradeCharm\Utility\bin\Debug\Utility.pdb
+E:\Soumya\Me\Projects\TradeCharm\Utility\obj\Debug\Utility.csprojResolveAssemblyReference.cache
+E:\Soumya\Me\Projects\TradeCharm\Utility\obj\Debug\Utility.dll
+E:\Soumya\Me\Projects\TradeCharm\Utility\obj\Debug\Utility.pdb
