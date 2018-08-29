@@ -11,7 +11,7 @@ namespace TradeSimulator
     public delegate void NewTickEventHandler(object sender, TickEventArgs e);
     public interface IFeedProvider 
     {
-        event NewTickEventHandler NewTickEvent;  
+        event NewTickEventHandler NewTickEvent;
         void Start();
         void Stop();       
     }

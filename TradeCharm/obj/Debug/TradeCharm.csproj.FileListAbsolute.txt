@@ -10,3 +10,5 @@ E:\Soumya\Me\Projects\TradeCharm\TradeCharm\bin\Debug\TradeSimulator.dll
 E:\Soumya\Me\Projects\TradeCharm\TradeCharm\bin\Debug\Utility.dll
 E:\Soumya\Me\Projects\TradeCharm\TradeCharm\bin\Debug\TradeSimulator.pdb
 E:\Soumya\Me\Projects\TradeCharm\TradeCharm\bin\Debug\Utility.pdb
+E:\Soumya\git\TradeCharm\TradeCharm\bin\Debug\TradeCharm.exe.config
+E:\Soumya\git\TradeCharm\TradeCharm\obj\Debug\TradeCharm.csprojResolveAssemblyReference.cache

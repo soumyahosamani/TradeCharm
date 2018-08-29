@@ -1,0 +1,6 @@
+E:\Soumya\git\TradeCharm\YahooFinance\bin\Debug\YahooFinance.dll
+E:\Soumya\git\TradeCharm\YahooFinance\bin\Debug\YahooFinance.pdb
+E:\Soumya\git\TradeCharm\YahooFinance\bin\Debug\YahooFinance.NET.dll
+E:\Soumya\git\TradeCharm\YahooFinance\obj\Debug\YahooFinance.csprojResolveAssemblyReference.cache
+E:\Soumya\git\TradeCharm\YahooFinance\obj\Debug\YahooFinance.dll
+E:\Soumya\git\TradeCharm\YahooFinance\obj\Debug\YahooFinance.pdb

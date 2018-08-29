@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using YahooFinance;
+using TradeSimulator;
 
 namespace TradeCharm
 {
@@ -21,7 +22,7 @@ namespace TradeCharm
 
         static void ExecuteFistImplementation()
         {
-            DataFeed dataFeed = new DataFeed();
+            FeedSimulation.DataFeed dataFeed = new FeedSimulation.DataFeed();
             dataFeed.Subscribe(new Strategy("Strategy1"));
             dataFeed.Subscribe(new Strategy("Strategy2"));
             dataFeed.Start();
@@ -31,9 +32,10 @@ namespace TradeCharm
         }
 
         static void ExecuteSecondImplementation()
-        {           
-            TradeSimulator.DataFeed datafeed = new TradeSimulator.DataFeed(new TradeSimulator.FeedProvider(), new TradeSimulator.FeedQueue<TradeSimulator.Tick>());
-            datafeed.Subscribe(new TradeSimulator.PrintStrategy("Print Strategy"));
+        {
+            var symbol = "INFY";
+            TradeSimulator.DataFeed datafeed = new TradeSimulator.DataFeed(new FeedProvider(), new FeedQueue<TradeSimulator.Tick>());
+            datafeed.Subscribe(new PrintStrategy("Print Strategy", symbol));
             datafeed.Start();
             Console.WriteLine("End");
             Console.ReadKey();

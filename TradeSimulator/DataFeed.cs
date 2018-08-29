@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TradeSimulator
 {
-    public class DataFeed 
+    public class DataFeed
     {
         private FeedQueue<Tick> queue;
         private IList<IStrategy> subscribers = new List<IStrategy>();
@@ -20,9 +20,9 @@ namespace TradeSimulator
             queue = feedQueue;
             this.FeedProvider = feedProvider;
             FeedProvider.NewTickEvent += OnNewTick;
-        }        
+        }
 
-        public IFeedProvider FeedProvider { get; private set; }   
+        public IFeedProvider FeedProvider { get; private set; }
         public void Subscribe(IStrategy strategy)
         {
             if (subscribers.Contains(strategy) == false)
@@ -33,7 +33,6 @@ namespace TradeSimulator
         {
             // start feed stream
             FeedProvider.Start();
-
             processThread = new Thread(ProcessTicks);
             processThread.IsBackground = false;
             Console.WriteLine("Starting Processing feed ");
@@ -51,8 +50,8 @@ namespace TradeSimulator
         {
             queue.AddFeed(e.Tick);
             //tickAdded.Set();            
-        }       
-        
+        }
+
 
         private Tick GetNextTick()
         {
@@ -84,7 +83,8 @@ namespace TradeSimulator
                 {
                     try
                     {
-                        subscriber.OnTick(tick);
+                        if (subscriber.Symbol == ?? )
+                            subscriber.OnTick(tick);
                     }
                     catch (Exception e)
                     {
@@ -97,5 +97,5 @@ namespace TradeSimulator
             }
         }
     }
-    
+
 }

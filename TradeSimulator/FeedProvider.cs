@@ -14,19 +14,26 @@ namespace TradeSimulator
         
         private int TickId = 1, ctr = 0;
 
+        public FeedProvider()
+        {
+           
+        }
+
         public event NewTickEventHandler NewTickEvent;
+
+        public string Symbol { get; private set; }
 
         public void Start()
         {
             feedProviderThread = new Thread(ProcessTicks);
             feedProviderThread.IsBackground = false;
-            Console.WriteLine("Starting feed stream");
+            Console.WriteLine("Starting feed stream for " + Symbol);
             feedProviderThread.Start();
         }
 
         public void Stop()
         {
-            Console.WriteLine("Stopping feed stream");
+            Console.WriteLine("Stopping feed stream for " + Symbol);
             feedProviderThread.Abort();
         }        
 

@@ -9,6 +9,7 @@ namespace TradeSimulator
    public interface IStrategy
     {
         string Name { get; }
+        string Symbol { get; }
         void OnTick(Tick tick);
     }
 }
