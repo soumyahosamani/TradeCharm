@@ -6,3 +6,10 @@ E:\Soumya\Me\Projects\TradeCharm\TradeSimulator\obj\Debug\TradeSimulator.csprojR
 E:\Soumya\Me\Projects\TradeCharm\TradeSimulator\obj\Debug\TradeSimulator.dll
 E:\Soumya\Me\Projects\TradeCharm\TradeSimulator\obj\Debug\TradeSimulator.pdb
 E:\Soumya\git\TradeCharm\TradeSimulator\obj\Debug\TradeSimulator.csprojResolveAssemblyReference.cache
+E:\Soumya\git\TradeCharm\TradeSimulator\bin\Debug\TradeSimulator.dll.config
+E:\Soumya\git\TradeCharm\TradeSimulator\bin\Debug\TradeSimulator.dll
+E:\Soumya\git\TradeCharm\TradeSimulator\bin\Debug\TradeSimulator.pdb
+E:\Soumya\git\TradeCharm\TradeSimulator\bin\Debug\Utility.dll
+E:\Soumya\git\TradeCharm\TradeSimulator\bin\Debug\Utility.pdb
+E:\Soumya\git\TradeCharm\TradeSimulator\obj\Debug\TradeSimulator.dll
+E:\Soumya\git\TradeCharm\TradeSimulator\obj\Debug\TradeSimulator.pdb

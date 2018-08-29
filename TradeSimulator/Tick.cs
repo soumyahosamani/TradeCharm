@@ -12,16 +12,19 @@ namespace TradeSimulator
         public DateTime Time;
         public int Id;    
 
-        public Tick(int id, double price, DateTime time)
+        public Tick(int id, string symbol, double price, DateTime time)
         {
             Price = price;
             Time = time;
             Id = id;
+            Symbol = symbol; 
         }
+
+        public string Symbol  { get; private set; }
 
         public override string ToString()
         {
-            return string.Format("{0}: {1} {2} ", Time, Price, Id);
+            return string.Format("{0}: {3} {1} {2} ", Time, Price, Id, Symbol);
         }
     }
 }

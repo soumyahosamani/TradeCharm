@@ -53,7 +53,7 @@ namespace TradeSimulator
                 ctr++;
                 if (ctr == 5)
                     Thread.Sleep(10000);
-                RaiseNewTickEvent(new Tick(TickId, randomNumber, DateTime.Now));
+                RaiseNewTickEvent(new Tick(TickId,"INFY", randomNumber, DateTime.Now));
                 TickId++;
             }
         }

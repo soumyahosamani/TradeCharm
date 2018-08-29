@@ -83,7 +83,7 @@ namespace TradeSimulator
                 {
                     try
                     {
-                        if (subscriber.Symbol == ?? )
+                        if (subscriber.Symbol == tick.Symbol )
                             subscriber.OnTick(tick);
                     }
                     catch (Exception e)
