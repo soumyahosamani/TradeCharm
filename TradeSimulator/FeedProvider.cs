@@ -8,42 +8,23 @@ using Utility;
 
 namespace TradeSimulator
 {
-    public class FeedProvider : IFeedProvider
+    public class FeedProvider : AbstractFeedProvider
     {
-        private Thread feedProviderThread;
         
-        private int TickId = 1, ctr = 0;
-
-        public FeedProvider()
+        protected override void CreateProcesThreads()
         {
-           
+            foreach (var symbol in SubscribedSymbols)
+            {
+                var feedProviderThread = new Thread(() => GenerateTicks(symbol));
+                feedProviderThread.Name = "Gen_" + symbol;
+                feedProviderThread.IsBackground = false;
+                ProcesThreads.Add(feedProviderThread);
+            }
         }
 
-        public event NewTickEventHandler NewTickEvent;
-
-        public string Symbol { get; private set; }
-
-        public void Start()
+        private void GenerateTicks(string symbol)
         {
-            feedProviderThread = new Thread(ProcessTicks);
-            feedProviderThread.IsBackground = false;
-            Console.WriteLine("Starting feed stream for " + Symbol);
-            feedProviderThread.Start();
-        }
-
-        public void Stop()
-        {
-            Console.WriteLine("Stopping feed stream for " + Symbol);
-            feedProviderThread.Abort();
-        }        
-
-        private void RaiseNewTickEvent(Tick tick)
-        {
-            NewTickEvent?.Invoke(this, new TickEventArgs(tick));
-        }
-
-        private void ProcessTicks()
-        {
+            int TickId = 1, ctr = 0;
             while (true)
             {
                 var randomNumber = Randomizer.GetRandomNumber();
@@ -53,7 +34,7 @@ namespace TradeSimulator
                 ctr++;
                 if (ctr == 5)
                     Thread.Sleep(10000);
-                RaiseNewTickEvent(new Tick(TickId,"INFY", randomNumber, DateTime.Now));
+                RaiseNewTickEvent(new Tick(TickId, symbol, randomNumber, DateTime.Now));
                 TickId++;
             }
         }

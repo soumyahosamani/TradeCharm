@@ -26,17 +26,18 @@ namespace TradeSimulator
         public void Subscribe(IStrategy strategy)
         {
             if (subscribers.Contains(strategy) == false)
+            {
                 subscribers.Add(strategy);
+                FeedProvider.Subscribe(strategy.Symbol);
+            }
         }
 
         public void Start()
         {
             // start feed stream
+            /* so here i should know which symbol feeds to start */
             FeedProvider.Start();
-            processThread = new Thread(ProcessTicks);
-            processThread.IsBackground = false;
-            Console.WriteLine("Starting Processing feed ");
-            processThread.Start();
+            StartProcessTicks();
         }
 
         public void Stop()
@@ -95,6 +96,14 @@ namespace TradeSimulator
 
                 previousTickId = tick.Id;
             }
+        }
+
+        private void StartProcessTicks()
+        {
+            processThread = new Thread(ProcessTicks);
+            processThread.IsBackground = false;
+            Console.WriteLine("Starting Processing feed ");
+            processThread.Start();
         }
     }
 

@@ -15,8 +15,7 @@ namespace TradeCharm
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome");
-            Sample sample = new Sample();
-            sample.GetTick();
+            //Sample sample = new Sample();            sample.GetTick();
             ExecuteSecondImplementation();
         }
 

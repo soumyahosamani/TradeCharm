@@ -1,48 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
 using System.IO;
+using System.Threading;
+using Utility;
 
 namespace TradeSimulator
 {
-    public class CSVFeedProvider : IFeedProvider
+    public class CSVFeedProvider : AbstractFeedProvider
     {
-        private string baseFolder;
-        private IList<string> symbols = new List<string> {"INFY", "WIPRO", "MARUTI" };
-        private IList<string> filePaths = new List<string>();
-        
+        private IDictionary<string, string> filePaths = new Dictionary<string, string>();
         public CSVFeedProvider()
         {
-            LoadFilePaths();            
+            LoadFilePaths();
+        }
+
+        protected override void CreateProcesThreads()
+        {
+            foreach (var symbol in SubscribedSymbols)
+            {
+                var file = filePaths.ContainsKey(symbol) ? filePaths[symbol] : null;
+                if (file != null)
+                {
+                    var processThread = new Thread(() => { ProcessCsv(file); });
+                    processThread.Name = "csv_" +symbol;
+                    processThread.IsBackground = false;
+                    processThreads.Add(processThread);                    
+                }
+            }
+        }
+
+        private void ProcessCsv(string file)
+        {
+            var randomNumber = Randomizer.GetRandomNumber();
+            // handle concern of file being held open for such a long time?? or keeping entire csv data in memory which  is better?
+            var quotes = File.ReadAllLines(file);
+            int tickId = 1;
+
+            foreach (var quote in quotes)
+            {
+                Thread.Sleep(randomNumber * 1000);
+                var temp = quote.Split(',');
+                var tick = new Tick(tickId, temp[0], double.Parse(temp[8]), DateTime.Parse(temp[2]));
+                RaiseNewTickEvent(tick);
+                tickId++;
+            }
         }
 
         private void LoadFilePaths()
         {
-            baseFolder = ConfigurationSettings.AppSettings["CsvProviderFolder"];
+            var baseFolder = ConfigurationSettings.AppSettings["CsvProviderFolder"];
+            var symbols = ConfigurationSettings.AppSettings["Symbols"].Split(',');
             foreach (var symbol in symbols)
             {
-                filePaths.Add(Path.Combine(baseFolder, symbol + ".csv"));
-                              
+                filePaths[symbol] = (Path.Combine(baseFolder, symbol + ".csv"));
             }
         }
-
-        public event NewTickEventHandler NewTickEvent;        
-
-        public void Start()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Stop()
-        {
-            throw new NotImplementedException();
-        }
-
-        
     }
 
-    
 }

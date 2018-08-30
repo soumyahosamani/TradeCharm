@@ -12,6 +12,8 @@ namespace TradeSimulator
     public interface IFeedProvider 
     {
         event NewTickEventHandler NewTickEvent;
+
+        void Subscribe(string Symbol);
         void Start();
         void Stop();       
     }
