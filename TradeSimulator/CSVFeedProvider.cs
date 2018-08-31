@@ -32,16 +32,24 @@ namespace TradeSimulator
 
         private void ProcessCsv(string file)
         {
-            var randomNumber = Randomizer.GetRandomNumber();
+            var randomNumber = Randomizer.GetRandomNumber(1,5);
             // handle concern of file being held open for such a long time?? or keeping entire csv data in memory which  is better?
             var quotes = File.ReadAllLines(file);
-            int tickId = 1;
+            int tickId = 0;           
 
             foreach (var quote in quotes)
             {
-                Thread.Sleep(randomNumber * 1000);
-                var temp = quote.Split(',');
-                var tick = new Tick(tickId, temp[0], double.Parse(temp[8]), DateTime.Parse(temp[2]));
+                // to skip header of csv file
+                if(tickId == 0)
+                {
+                    tickId++;
+                    continue;
+                }
+
+                Console.WriteLine("Thread {0} {1} Sleeping for {2} s", Thread.CurrentThread.ManagedThreadId, Thread.CurrentThread.Name, randomNumber/1000);
+                Thread.Sleep(randomNumber);
+                var temp = quote.Split(',');                
+                var tick = new Tick(tickId, temp[0].Trim('"'), double.Parse(temp[8].Trim('"')), DateTime.Parse(temp[2].Trim('\"')));
                 RaiseNewTickEvent(tick);
                 tickId++;
             }

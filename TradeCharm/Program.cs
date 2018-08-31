@@ -16,7 +16,8 @@ namespace TradeCharm
         {
             Console.WriteLine("Welcome");
             //Sample sample = new Sample();            sample.GetTick();
-            ExecuteSecondImplementation();
+            //ExecuteSecondImplementation();
+            ExecuteCsvImplementation();
         }
 
         static void ExecuteFistImplementation()
@@ -39,6 +40,18 @@ namespace TradeCharm
             Console.WriteLine("End");
             Console.ReadKey();
             datafeed.Stop();
+        }
+
+        static void ExecuteCsvImplementation()
+        {
+            var symbol = "INFY";
+            TradeSimulator.DataFeed datafeed = new TradeSimulator.DataFeed(new CSVFeedProvider(), new FeedQueue<TradeSimulator.Tick>());
+            datafeed.Subscribe(new PrintStrategy("Print Strategy", symbol));
+            datafeed.Start();
+            Console.WriteLine("End");
+            Console.ReadKey();
+            datafeed.Stop();
+
         }
     }
 }
