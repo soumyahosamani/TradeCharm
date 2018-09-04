@@ -5,6 +5,5 @@ E:\Soumya\Me\Projects\TradeCharm\FeedSimulation\obj\Debug\FeedSimulation.dll
 E:\Soumya\Me\Projects\TradeCharm\FeedSimulation\obj\Debug\FeedSimulation.pdb
 E:\Soumya\git\TradeCharm\FeedSimulation\bin\Debug\FeedSimulation.dll
 E:\Soumya\git\TradeCharm\FeedSimulation\bin\Debug\FeedSimulation.pdb
-E:\Soumya\git\TradeCharm\FeedSimulation\obj\Debug\FeedSimulation.csprojResolveAssemblyReference.cache
 E:\Soumya\git\TradeCharm\FeedSimulation\obj\Debug\FeedSimulation.dll
 E:\Soumya\git\TradeCharm\FeedSimulation\obj\Debug\FeedSimulation.pdb

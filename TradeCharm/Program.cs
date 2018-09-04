@@ -31,26 +31,26 @@ namespace TradeCharm
             dataFeed.Stop();
         }
 
-        static void ExecuteSecondImplementation()
-        {
-            var symbol = "INFY";
-            TradeSimulator.DataFeed datafeed = new TradeSimulator.DataFeed(new FeedProvider(), new FeedQueue<TradeSimulator.Tick>());
-            datafeed.Subscribe(new PrintStrategy("Print Strategy", symbol));
-            datafeed.Start();
-            Console.WriteLine("End");
-            Console.ReadKey();
-            datafeed.Stop();
-        }
+        //static void ExecuteSecondImplementation()
+        //{
+        //    var symbol = "INFY";
+        //    TradeSimulator.DataFeed datafeed = new TradeSimulator.DataFeed(new FeedProvider(), new FeedQueue<TradeSimulator.Tick>());
+        //    datafeed.Subscribe(new PrintStrategy("Print Strategy", symbol));
+        //    datafeed.Start();
+        //    Console.WriteLine("End");
+        //    Console.ReadKey();
+        //    datafeed.Stop();
+        //}
 
         static void ExecuteCsvImplementation()
         {
             var symbol = "INFY";
-            TradeSimulator.DataFeed datafeed = new TradeSimulator.DataFeed(new CSVFeedProvider(), new FeedQueue<TradeSimulator.Tick>());
+            TradeSimulator.DataFeed datafeed = new TradeSimulator.DataFeed(new CSVFeedProvider());
             datafeed.Subscribe(new PrintStrategy("Print Strategy", symbol));
-            datafeed.Start();
+            //datafeed.Start();
             Console.WriteLine("End");
             Console.ReadKey();
-            datafeed.Stop();
+            //datafeed.Stop();
 
         }
     }

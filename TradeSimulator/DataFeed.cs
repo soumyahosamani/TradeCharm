@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TradeSimulator
 {
-    public class DataFeed
+    public class DataFeed :IDisposable
     {
         private FeedQueue<Tick> queue;
         private IList<IStrategy> subscribers = new List<IStrategy>();
@@ -15,24 +15,38 @@ namespace TradeSimulator
         private Thread processThread;
         private int previousTickId = 0;
 
-        public DataFeed(IFeedProvider feedProvider, FeedQueue<Tick> feedQueue)
+        private bool started = false;
+
+        public DataFeed(IFeedProvider feedProvider)
         {
+            FeedQueue<Tick> feedQueue = new FeedQueue<Tick>();
             queue = feedQueue;
             this.FeedProvider = feedProvider;
             FeedProvider.NewTickEvent += OnNewTick;
-        }
+
+            lock (this)
+            {
+                Start();
+                started = true;
+            }
+            
+        }       
 
         public IFeedProvider FeedProvider { get; private set; }
         public void Subscribe(IStrategy strategy)
         {
             if (subscribers.Contains(strategy) == false)
             {
+                if(strategy.Symbol == null)
+                {
+                    throw new ArgumentNullException("Symbol","Symbol is not provided for Strategy" + strategy.Name);
+                }
                 subscribers.Add(strategy);
                 FeedProvider.Subscribe(strategy.Symbol);
             }
         }
 
-        public void Start()
+        private void Start()
         {
             // start feed stream
             /* so here i should know which symbol feeds to start */
@@ -40,7 +54,7 @@ namespace TradeSimulator
             StartProcessTicks();
         }
 
-        public void Stop()
+        private void Stop()
         {
             FeedProvider.Stop();
             Console.WriteLine("Stopping Processing thread");
@@ -104,6 +118,15 @@ namespace TradeSimulator
             processThread.IsBackground = false;
             Console.WriteLine("Starting Processing feed ");
             processThread.Start();
+        }
+
+        public void Dispose()
+        {
+            lock (this)
+            {
+                if (started)
+                    Stop();
+            }
         }
     }
 
