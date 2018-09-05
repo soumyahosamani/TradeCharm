@@ -19,6 +19,8 @@ namespace TradeSimulator
 
         public DataFeed(IFeedProvider feedProvider)
         {
+            if (feedProvider == null)
+                throw new ArgumentNullException("Feed Provider is invalid");
             FeedQueue<Tick> feedQueue = new FeedQueue<Tick>();
             queue = feedQueue;
             this.FeedProvider = feedProvider;
@@ -37,7 +39,11 @@ namespace TradeSimulator
         {
             if (subscribers.Contains(strategy) == false)
             {
-                if(strategy.Symbol == null)
+                if (strategy.Name == null)
+                {
+                    throw new ArgumentNullException("Name", "Name is not provided for Strategy" );
+                }
+                if (strategy.Symbol == null)
                 {
                     throw new ArgumentNullException("Symbol","Symbol is not provided for Strategy" + strategy.Name);
                 }
